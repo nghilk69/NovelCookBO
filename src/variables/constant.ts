@@ -7,4 +7,4 @@
 // export const API_URL = process.env.REACT_APP_API_URL || 'https://api.v3.staging.transalliancehub.ql6625.fr/api';
 
 //export const API_URL = process.env.REACT_APP_API_URL || 'https://api.transalliancehub.staging.bfast-vn.net/api';
-export const API_URL = process.env.REACT_APP_API_URL || 'https://api.anime.wildwolves.shop';
+export const API_URL = 'https://api.anime.wildwolves.shop';
