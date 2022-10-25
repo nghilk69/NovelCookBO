@@ -3,7 +3,7 @@ import {AUTH_CHECK, AUTH_ERROR, AUTH_LOGIN, AUTH_LOGOUT} from 'react-admin';
 export default (type: string, params: any) => {
     if (type === AUTH_LOGIN) {
         const { email, password } = params;
-        const request = new Request('https://api.anime.wildwolves.live/auth/login', {
+        const request = new Request('https://api.anime.wildwolves.shop/auth/login', {
             method: 'POST',
             body: JSON.stringify({ email, password }),
             headers: new Headers({ 'Content-Type': 'application/json' }),
