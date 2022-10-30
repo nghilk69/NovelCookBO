@@ -15,10 +15,9 @@ import {
 } from 'react-admin';
 import BookIcon from '@mui/icons-material/Book';
 import { ImageField } from "react-admin";
-import {API_URL} from "../variables/constant";
+import {API_URL, Status} from "../variables/constant";
 import {ViewImage} from "./view-image";
 export const PostIcon = BookIcon;
-
 const ImagesShowInTable = (props: any) => {
     return props?.record?.image?.length > 0 ? (
         <div className="d-flex align-items-center justify-content-center">
@@ -83,8 +82,8 @@ export const NovelCreate = () => (
             <SelectInput
                 source="status"
                 choices={[
-                    {name: 'Ongoing' },
-                    {name: 'Complete' },
+                    {id: 'Ongoing', name: 'Ongoing' },
+                    {id: 'Complete', name: 'Complete' },
                 ]}
             />
             <TextInput source="sourceLink" />

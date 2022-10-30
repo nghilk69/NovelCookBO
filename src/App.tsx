@@ -27,7 +27,7 @@ const withUpload = (requestHandler: (type: any, resource: any, params: any) => a
             //     return Promise.resolve({ data: params.previousData })
             // }
             if (!image) {
-                return requestHandler(type, resource, {...params, data: {timeStamp: (new Date().getTime())}});
+                return requestHandler(type, resource, params);
             }
 
             // const formData = new FormData();
