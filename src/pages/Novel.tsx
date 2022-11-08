@@ -53,7 +53,6 @@ export const NovelEdit = () => (
         <SimpleForm>
             <TextInput disabled source="id" />
             <TextInput source="name" />
-            <TextInput source="uniqueName" />
             <TextInput source="author" />
             <TextInput source="description" />
             <SelectInput
@@ -76,7 +75,6 @@ export const NovelCreate = () => (
     <Create title="Create a Post">
         <SimpleForm>
             <TextInput source="name" />
-            <TextInput source="uniqueName" />
             <TextInput source="author" />
             <TextInput source="description" />
             <SelectInput
