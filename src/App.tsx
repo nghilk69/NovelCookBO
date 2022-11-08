@@ -33,21 +33,26 @@ const withUpload = (requestHandler: (type: any, resource: any, params: any) => a
             // const formData = new FormData();
             // formData.append('file', pictures.rawFile);
             // const json = await fetchJson(`${API_URL}/Containers/reseves/upload`, { method: 'POST', body: formData });
-            let images: any = [];
-            if (data.image && data.image.length > 0) {
-                images = data.image;
-            }
-            const formData = new FormData();
-            formData.append('files', image.rawFile);
-            const imagesJson = await fetchUtils.fetchJson(`${API_URL}/files/upload/images`, { method: 'POST', body: formData })
-                images.push(imagesJson.json.filename);
-            return requestHandler(type, resource, {
-                ...params, data: {
-                    ...data,
-                    image: images[0],
-                    timeStamp: (new Date().getTime())
+            if (image && image.rawFile) {
+                let images: any = [];
+                if (data.image && data.image.length > 0) {
+                    images = data.image;
                 }
-            });
+                const formData = new FormData();
+                formData.append('files', image.rawFile);
+                const imagesJson = await fetchUtils.fetchJson(`${API_URL}/files/upload/images`, {
+                    method: 'POST',
+                    body: formData
+                })
+                images.push(imagesJson.json.filename);
+                return requestHandler(type, resource, {
+                    ...params, data: {
+                        ...data,
+                        image: images[0],
+                        timeStamp: (new Date().getTime())
+                    }
+                });
+            }
         }
         return requestHandler(type, resource, params);
     };
