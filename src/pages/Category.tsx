@@ -6,13 +6,21 @@ import {
     Edit,
     Create,
     SimpleForm,
+    DateField,
     TextField,
     EditButton,
     TextInput,
+    DateInput,
+    SelectInput, FileField, FileInput, BooleanInput
 } from 'react-admin';
+import BookIcon from '@mui/icons-material/Book';
+import { ImageField } from "react-admin";
+import {API_URL} from "../variables/constant";
+import {ViewImage} from "./view-image";
+export const PostIcon = BookIcon;
 
 
-export const TagsList = () => (
+export const CategoryList = () => (
     <List>
         <Datagrid>
             <TextField source="id" />
@@ -23,18 +31,18 @@ export const TagsList = () => (
     </List>
 );
 
-export const TagsEdit = () => (
+export const CategoryEdit = () => (
     <Edit title={"Edit"}>
-        <SimpleForm redirect="/tag">
+        <SimpleForm redirect="/category">
             <TextInput source="name" />
             <TextInput source="description" />
         </SimpleForm>
     </Edit>
 );
 
-export const TagsCreate = () => (
-    <Create title="Create a Tag">
-        <SimpleForm redirect="/tag">
+export const CategoryCreate = () => (
+    <Create title="Create a Category">
+        <SimpleForm redirect="/category">
             <TextInput source="name" />
             <TextInput source="description" />
         </SimpleForm>

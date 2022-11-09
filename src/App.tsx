@@ -9,6 +9,8 @@ import {MyLoginPage} from "./auth/login";
 import apiClient from "./api"
 import {API_URL} from "./variables/constant";
 import {NovelCreate, NovelEdit, NovelList} from "./pages/Novel";
+import {CategoryCreate, CategoryEdit, CategoryList} from "./pages/Category";
+import {TagsCreate, TagsEdit, TagsList} from "./pages/Tags";
 
 
 export const httpClient = (url: string, options: any = {}) => {
@@ -63,6 +65,8 @@ const App = () => (
         authProvider={authProvider}>
         <Resource name="users" list={UsersList} create={UserCreate} edit={UserEdit} />
         <Resource name="novel" list={NovelList} create={NovelCreate} edit={NovelEdit} />
+        <Resource name="tag" list={TagsList} create={TagsCreate} edit={TagsEdit} />
+        <Resource name="category" list={CategoryList} create={CategoryCreate} edit={CategoryEdit} />
     </Admin>
 );
 

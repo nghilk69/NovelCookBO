@@ -11,13 +11,17 @@ import {
     EditButton,
     TextInput,
     DateInput,
-    SelectInput, FileField, FileInput, BooleanInput
+    SelectInput, FileField, FileInput, BooleanInput, SelectArrayInput
 } from 'react-admin';
 import BookIcon from '@mui/icons-material/Book';
 import { ImageField } from "react-admin";
 import {API_URL, Status} from "../variables/constant";
 import {ViewImage} from "./view-image";
+import { ReferenceInput } from "react-admin";
+import { ReferenceArrayInput } from "react-admin";
+import { useCreate } from "react-admin";
 export const PostIcon = BookIcon;
+
 const ImagesShowInTable = (props: any) => {
     return props?.record?.image?.length > 0 ? (
         <div className="d-flex align-items-center justify-content-center">
@@ -50,7 +54,7 @@ export const NovelList = () => (
 
 export const NovelEdit = () => (
     <Edit title={"Edit"}>
-        <SimpleForm>
+        <SimpleForm redirect="/novel">
             <TextInput disabled source="id" />
             <TextInput source="name" />
             <TextInput source="author" />
@@ -62,6 +66,22 @@ export const NovelEdit = () => (
                     {id:'Complete', status: 'Complete' },
                 ]}
             />
+            <ReferenceArrayInput source="tags"
+                                 perPage={null}
+                                 reference="tag"
+                                 label="tags"
+                                 sort={{field: "name", order: "DESC"}}
+                                 fullWidth>
+                <SelectArrayInput optionText="name"/>
+            </ReferenceArrayInput>
+            <ReferenceArrayInput source="categories"
+                                 perPage={null}
+                                 reference="category"
+                                 label="Categories"
+                                 sort={{field: "name", order: "DESC"}}
+                                 fullWidth>
+                <SelectArrayInput optionText="name"/>
+            </ReferenceArrayInput>
             <TextInput source="sourceLink" />
             <BooleanInput source="active" />
             <FileInput source="image" label="Image Novel" accept="image/*">
@@ -71,23 +91,55 @@ export const NovelEdit = () => (
     </Edit>
 );
 
-export const NovelCreate = () => (
-    <Create title="Create a Post">
-        <SimpleForm>
-            <TextInput source="name" />
-            <TextInput source="author" />
-            <TextInput source="description" />
+export const NovelCreate = () => {
+    const [create] = useCreate();
+    const postSave = (data: any) => {
+
+        const sender = {
+            name: data.name,
+            description: data.description,
+            author: data.author,
+            status: data.status,
+            active: data.active,
+            sourceLink: data.sourceLink,
+            tags: data.tags.map((value: any) => value.name),
+            categories: data.categories.map((value: any) => value.name),
+            image: data.image
+        }
+        create('novel', { sender });
+    };
+    return (<Create title="Create a Novel">
+        <SimpleForm redirect="/novel" >
+            <TextInput source="name"/>
+            <TextInput source="author"/>
+            <TextInput source="description"/>
             <SelectInput
                 source="status"
                 choices={[
-                    {id: 'Ongoing', name: 'Ongoing' },
-                    {id: 'Complete', name: 'Complete' },
+                    {id: 'Ongoing', name: 'Ongoing'},
+                    {id: 'Complete', name: 'Complete'},
                 ]}
             />
-            <TextInput source="sourceLink" />
+            <ReferenceArrayInput source="tags"
+                                 perPage={null}
+                                 reference="tag"
+                                 label="tags"
+                                 sort={{field: "name", order: "DESC"}}
+                                 fullWidth>
+                <SelectArrayInput optionText="name"/>
+            </ReferenceArrayInput>
+            <ReferenceArrayInput source="categories"
+                                 perPage={null}
+                                 reference="category"
+                                 label="Categories"
+                                 sort={{field: "name", order: "DESC"}}
+                                 fullWidth>
+                <SelectArrayInput optionText="name"/>
+            </ReferenceArrayInput>
+            <TextInput source="sourceLink"/>
             <FileInput source="image" label="Related files" accept="image/*">
-                <FileField source="image" title="image" />
+                <FileField source="image" title="image"/>
             </FileInput>
         </SimpleForm>
-    </Create>
-);
+    </Create>)
+};

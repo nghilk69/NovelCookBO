@@ -63,6 +63,7 @@ declare module "react-admin" {
     export const TabbedForm: any;
 
     export const useLogin: any;
+    export const useCreate: any;
     export const useNotify: any;
     export const useQuery: any;
     export const useGetList: any;

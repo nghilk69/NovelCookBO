@@ -112,9 +112,21 @@ export default (apiUrl = API_URL) => {
             case GET_LIST:
                 console.log(json)
                 if (json) {
+                    // if (params && params.sort && params.sort.field && params.sort.field === 'name') {
+                    //     return { data: json[0]};
+                    // }
                     return  { data: json[0], total: json[1] };
                 }
                 break;
+            case GET_MANY:
+                console.log(json, 'getMany');
+                if (json) {
+                    // if (params && params.sort && params.sort.field && params.sort.field === 'name') {
+                    //     return { data: json[0]};
+                    // }
+                    return  { data: json[0], total: json[1] };
+                }
+                break
             case GET_MANY_REFERENCE:
                 if (!headers.has('content-range')) {
                     throw new Error(
