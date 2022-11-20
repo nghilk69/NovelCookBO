@@ -11,7 +11,7 @@ import {
     EditButton,
     TextInput,
     DateInput,
-    SelectInput, FileField, FileInput, BooleanInput, SelectArrayInput
+    SelectInput, FileField, FileInput, BooleanInput, SelectArrayInput, useRecordContext
 } from 'react-admin';
 import BookIcon from '@mui/icons-material/Book';
 import { ImageField } from "react-admin";
@@ -29,9 +29,13 @@ const ImagesShowInTable = (props: any) => {
         </div>
     ): null;
 };
-
+const PercentTextField = (source: any) => {
+    const record = useRecordContext();
+    console.log(record, 'record');
+    return (<span style={{ color: 'purple' }}>{`${record.chapters.length} / ${record.active? record.chapters.length : record.getChapters}`}</span>);
+};
 export const NovelList = () => (
-    <List>
+    <List filter={{ include: ['chapters'] }}>
         <Datagrid>
             <TextField source="id" />
             <TextField source="name" />
@@ -41,6 +45,7 @@ export const NovelList = () => (
             <TextField source="status" />
             <TextField source="sourceLink" />
             <TextField source="bookmarked" />
+            <PercentTextField source="getChapter"/>
             <TextField source="active" />
             <ViewImage
                 label={'Image'}
