@@ -35,7 +35,7 @@ const PercentTextField = (source: any) => {
     return (<span style={{ color: 'purple' }}>{`${record.chapters.length} / ${record.active? record.chapters.length : record.getChapters}`}</span>);
 };
 export const NovelList = () => (
-    <List filter={{ include: ['chapters'] }}>
+    <List filter={{ include: { relation: ['chapters'], scope : { fields: ['id'] } } }}>
         <Datagrid>
             <TextField source="id" />
             <TextField source="name" />
