@@ -11,6 +11,7 @@ import {API_URL} from "./variables/constant";
 import {NovelCreate, NovelEdit, NovelList} from "./pages/Novel";
 import {CategoryCreate, CategoryEdit, CategoryList} from "./pages/Category";
 import {TagsCreate, TagsEdit, TagsList} from "./pages/Tags";
+import {ReviewCreate, ReviewEdit, ReviewList} from "./pages/Review";
 
 
 export const httpClient = (url: string, options: any = {}) => {
@@ -23,7 +24,7 @@ export const httpClient = (url: string, options: any = {}) => {
 }
 const withUpload = (requestHandler: (type: any, resource: any, params: any) => any) =>
     async (type: string, resource: string, params: { data: any, previousData: any }) => {
-        if(resource === 'novel' && (type === 'UPDATE' || type === 'CREATE')) {
+        if((resource === 'novel' || resource === 'review') && (type === 'UPDATE' || type === 'CREATE')) {
             const { image, ...data } = params.data;
             // if (!pictures) {
             //     return Promise.resolve({ data: params.previousData })
@@ -60,6 +61,7 @@ const withUpload = (requestHandler: (type: any, resource: any, params: any) => a
     };
 const App = () => (
     <Admin
+
         loginPage={MyLoginPage}
         dataProvider={withUpload(apiClient())}
         authProvider={authProvider}>
@@ -67,6 +69,7 @@ const App = () => (
         <Resource name="novel" list={NovelList} create={NovelCreate} edit={NovelEdit} />
         <Resource name="tag" list={TagsList} create={TagsCreate} edit={TagsEdit} />
         <Resource name="category" list={CategoryList} create={CategoryCreate} edit={CategoryEdit} />
+        <Resource name="review" list={ReviewList} create={ReviewCreate} edit={ReviewEdit} />
     </Admin>
 );
 
