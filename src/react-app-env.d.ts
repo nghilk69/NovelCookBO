@@ -24,7 +24,9 @@ declare module "react-admin" {
 
     export const email: any;
     export const TextField: any;
+
     export const EmailField: any;
+    export const RichTextField: any;
     export const UrlField: any;
     export const ChipField: any;
     export const ImageField: any;

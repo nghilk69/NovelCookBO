@@ -14,29 +14,6 @@ import {makeStyles} from "@material-ui/core/styles";
 export const ViewImage = (props: any) => {
     const [open, setOpen] = useState(false);
     const record = useRecordContext(props);
-    // const useStyles = makeStyles({
-    //     iconEyes: {
-    //         color: 'rgb(204, 204, 0)',
-    //         fontSize: 32,
-    //         cursor: 'pointer'
-    //     },
-    //     disabled: {
-    //         opacity: .5
-    //     },
-    //     wrapImage: {
-    //         width: 500,
-    //         height: 600
-    //     },
-    //     img: {
-    //         width: '100%',
-    //         height: '100%',
-    //         objectFit: 'contain'
-    //     },
-    //     root: {
-    //         padding: 0
-    //     }
-    // });
-
     const handleClose = () => {
         setOpen(false);
     }

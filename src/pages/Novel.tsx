@@ -20,6 +20,9 @@ import {ViewImage} from "./view-image";
 import { ReferenceInput } from "react-admin";
 import { ReferenceArrayInput } from "react-admin";
 import { useCreate } from "react-admin";
+import {Filter} from "@material-ui/icons";
+import {ButtonReCrawl} from "../component/Button-ReCrawl";
+import { RichTextField } from "react-admin";
 export const PostIcon = BookIcon;
 
 const ImagesShowInTable = (props: any) => {
@@ -41,7 +44,13 @@ export const NovelList = () => (
             <TextField source="name" />
             <TextField source="uniqueName" />
             <TextField source="author" />
-            <TextField source="description" />
+            <RichTextField inputProps={{
+                maxLength: 3,
+            }}  source="description" sx={{ overflow: 'hidden', textOverflow: 'ellipsis',
+                display: '-webkit-box',
+                webkitLineClamp: 3,
+                lineClamp: 3,
+                    webkitBoxOrient: 'vertical'}} />
             <TextField source="status" />
             <TextField source="sourceLink" />
             <TextField source="bookmarked" />
@@ -52,6 +61,7 @@ export const NovelList = () => (
                 source="image"
                 containerId="images"
             />
+            <ButtonReCrawl/>
             <EditButton />
         </Datagrid>
     </List>

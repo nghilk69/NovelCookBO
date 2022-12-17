@@ -12,6 +12,7 @@ import {NovelCreate, NovelEdit, NovelList} from "./pages/Novel";
 import {CategoryCreate, CategoryEdit, CategoryList} from "./pages/Category";
 import {TagsCreate, TagsEdit, TagsList} from "./pages/Tags";
 import {ReviewCreate, ReviewEdit, ReviewList} from "./pages/Review";
+import {GoogleCreate, GoogleEdit, GoogleList} from "./pages/Google";
 
 
 export const httpClient = (url: string, options: any = {}) => {
@@ -69,7 +70,8 @@ const App = () => (
         <Resource name="novel" list={NovelList} create={NovelCreate} edit={NovelEdit} />
         <Resource name="tag" list={TagsList} create={TagsCreate} edit={TagsEdit} />
         <Resource name="category" list={CategoryList} create={CategoryCreate} edit={CategoryEdit} />
-        <Resource name="review" list={ReviewList} create={ReviewCreate} edit={ReviewEdit} />
+        <Resource name="category" list={CategoryList} create={CategoryCreate} edit={CategoryEdit} />
+        <Resource name="google" list={GoogleList} create={GoogleCreate} edit={GoogleEdit} />
     </Admin>
 );
 
