@@ -70,7 +70,7 @@ const App = () => (
         <Resource name="novel" list={NovelList} create={NovelCreate} edit={NovelEdit} />
         <Resource name="tag" list={TagsList} create={TagsCreate} edit={TagsEdit} />
         <Resource name="category" list={CategoryList} create={CategoryCreate} edit={CategoryEdit} />
-        <Resource name="category" list={CategoryList} create={CategoryCreate} edit={CategoryEdit} />
+        <Resource name="review" list={ReviewList} create={ReviewCreate} edit={ReviewEdit} />
         <Resource name="google" list={GoogleList} create={GoogleCreate} edit={GoogleEdit} />
     </Admin>
 );
